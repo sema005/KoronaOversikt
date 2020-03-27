@@ -3,7 +3,7 @@
 
     let articles = []
     let articlesLatest = []
-    let id = [ 25, 175]
+    let id = 175
 
 
 
@@ -12,8 +12,8 @@
         .then( response => response.json() )
         .then( json => {
             console.log("Resultater")
-            articles = json.locations[id]
-            articlesLatest = json.locations[id].latest
+            articles = json.locations
+            articlesLatest = json.locations.latest
             console.log(articles)
         }
         ).catch((err) => console.log(err))
