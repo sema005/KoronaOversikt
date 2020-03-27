@@ -1,6 +1,7 @@
 # Korona app
-Dette er en simpel app som bruker et <a href="https://coronavirus-tracker-api.herokuapp.com/v2/locations?timelines=1">korona api </a>
-It uses the <a href="https://svelte-native.technology/docs">Svelte-native</a> framework to build a native application. Svelte-native is build on top of <a href="https://nativescript.org"></a>, so you need to go through the setup there in order to install the TNS CLI tools
+Dette er en simpel app som bruker et <a href="https://coronavirus-tracker-api.herokuapp.com/v2/locations?timelines=1">korona api.</a>
+
+Den bruker <a href="https://svelte-native.technology/docs">Svelte-native</a> til å bygge denne applikasjonen to build a native application. Svelte-native er bygd opp på <a href="https://nativescript.org"></a>
 
 ## Set up
 ```html
