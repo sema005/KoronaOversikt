@@ -8,7 +8,3 @@ ths run [ios|android]
 ```
 
 ## Project structure
-This is a single page application. Everything is handled in app/App.svelte. This file...
-- Fetches data from firestore in the svelte onMount function
-- Uses a  <a href="https://svelte-native.technology/docs#scrollview">scrollViews</a> to display a list of items
-- You are not able to do anything further whit the items - i.e delete, update and add - so example just serves as a demo of how you can include firestore data in a simple app
