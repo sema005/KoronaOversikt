@@ -1,5 +1,5 @@
 # Korona app
-This is a simple app that uses <a href="https://coronavirus-tracker-api.herokuapp.com/v2/locations?timelines=1">korona api.</a>
+This is a simple app that uses <a href="https://coronavirus-tracker-api.herokuapp.com/v2/locations?timelines=1">corona api.</a>
 It shows deaths and infected in Europa
 
 ## Set up
