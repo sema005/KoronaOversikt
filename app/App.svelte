@@ -7,6 +7,9 @@
     // Array med alle landene jeg har hentet fra API
     let europa = []
 
+    let infected 
+    let death
+
     // ID til alle landene fra API som er i Europa
     let EuropaID = [1, 3, 23, 27, 30, 92, 102, 106, 107, 122, 22, 135, 130, 137, 247, 87, 146, 149, 150, 151, 155, 159, 160, 162, 166, 175, 174, 183, 184, 186, 187, 191, 194, 197, 198, 201, "storbritania", 206, 205, 91, 213, 120, 215, 129, "vatikanstaten", 16 ]
 
@@ -59,11 +62,16 @@
     <scrollView>
     <flexboxLayout flexDirection="column">
         {#each searched as item}
+        
+            <!--Gjør om antall smittede til et lettere tall å lese-->
+            {infected = item.latest.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+            <!--Gjør om antall døde til et lettere tall å lese-->
+            {death = item.latest.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
             <stackLayout class="div">
                 <flexboxLayout on:tap={() => showNew(item)} flexDirection="column" class="table">
                     <label class="white h1 " text="{item.country}" />
-                    <label style="text-align:center;" class="white p" text="Infected: {item.latest.confirmed}" />
-                    <label style="text-align:center;" class="white p" text="Deaths: {item.latest.deaths}" />
+                    <label style="text-align:center;" class="white p" text="Infected: {infected}" />
+                    <label style="text-align:center;" class="white p" text="Deaths: {death}" />
                     <label style="text-align:center;" class="white p" text="Healhy: {item.latest.recovered}" />
                 </flexboxLayout>
             </stackLayout>
