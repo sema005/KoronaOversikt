@@ -19,7 +19,9 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/halfnelson/svelte-native-template",
   "dependencies": {
+    "chart.js": "^2.9.3",
     "nativescript-theme-core": "~2.0.24",
+    "nativescript-ui-chart": "^7.1.1",
     "sort-objects-array": "^1.7.1",
     "svelte-native": "~0.8.0",
     "tns-core-modules": "~6.4.2"

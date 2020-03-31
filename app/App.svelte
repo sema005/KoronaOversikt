@@ -56,8 +56,8 @@
     <actionBar on:tap={() => console.log("hei")} title="Korona news Europa" style="background-color: #222; color: white;"/>
     <stackLayout class="main" >
         <stackLayout class="searchbar">
-            <searchBar on:focus={test} class="search" bind:text={search} hint="Search after country"/>
-            <button text="Death" on:tap={() => order="death"} />
+            <searchBar unloadedEvent="true" on:focus={test} class="search" bind:text={search} hint="Search after country"/>
+            <button style="background-color:indigo; color:white" text="Death" on:tap={() => order = "death"} />
         </stackLayout>
     <scrollView>
     <flexboxLayout flexDirection="column">
@@ -72,7 +72,7 @@
                     <label class="white h1 " text="{item.country}" />
                     <label style="text-align:center;" class="white p" text="Infected: {infected}" />
                     <label style="text-align:center;" class="white p" text="Deaths: {death}" />
-                    <label style="text-align:center;" class="white p" text="Healhy: {item.latest.recovered}" />
+                    <label style="text-align:center;" class="white p" text="Click for more information" />
                 </flexboxLayout>
             </stackLayout>
         {:else}
@@ -106,7 +106,8 @@
     }
 
     .search {
-        background-color: green;
+        background-color: #1b1b30;
+        color: white;
     }
 
     .table {
