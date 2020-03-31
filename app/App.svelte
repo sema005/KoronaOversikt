@@ -3,6 +3,7 @@
     import { showModal } from "svelte-native"
     import MoreInfo from "./modals/MoreInfo.svelte"
 
+    const sortObjectsArray = require('sort-objects-array')
     // Array med alle landene jeg har hentet fra API
     let europa = []
 
@@ -19,22 +20,32 @@
         ).catch((err) => console.log(err))
     } )
 
+
     // Serach teksten
     let search = ""
     // Nytt array med filter funskjon
     let searched = []
     $: searched = europa.filter( europa => europa.country.toLowerCase().includes(search.toLocaleLowerCase()))
 
-    const showNew = async (searched) => {
+
+    let order = "title"
+    $:  switch(order){      
+        case 'title': searched = sortObjectsArray(searched, 'country'); break;           
+        case 'death': searched = sortObjectsArray(searched.latest, 'deaths'); break;        
+    }
+
+    const showNew = async (europa) => {
         await showModal(
             {
                 page: MoreInfo,
                 props:{
-                    europa:searched
+                    europa:europa
                 }
             }
         )
     }
+
+    const test = () => console.log("focus")
 
 </script>
 
@@ -42,13 +53,14 @@
     <actionBar on:tap={() => console.log("hei")} title="Korona news Europa" style="background-color: #222; color: white;"/>
     <stackLayout class="main" >
         <stackLayout class="searchbar">
-            <searchBar textFieldBackgroundColor="" bind:text={search} hint="Search after country"/>
+            <searchBar on:focus={test} class="search" bind:text={search} hint="Search after country"/>
+            <button text="Death" on:tap={() => order="death"} />
         </stackLayout>
     <scrollView>
     <flexboxLayout flexDirection="column">
         {#each searched as item}
             <stackLayout class="div">
-                <flexboxLayout on:tap={() => showNew(searched)} flexDirection="column" class="table">
+                <flexboxLayout on:tap={() => showNew(item)} flexDirection="column" class="table">
                     <label class="white h1 " text="{item.country}" />
                     <label style="text-align:center;" class="white p" text="Infected: {item.latest.confirmed}" />
                     <label style="text-align:center;" class="white p" text="Deaths: {item.latest.deaths}" />
@@ -83,6 +95,10 @@
         height: 100%;
         justify-content: center;
         align-content: center;
+    }
+
+    .search {
+        background-color: green;
     }
 
     .table {

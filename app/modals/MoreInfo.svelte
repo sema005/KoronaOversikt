@@ -15,7 +15,6 @@
     </scrollView>
 </page>
 </frame>
-
 <style>
     .container {
         background-color: #1b1b30;
