@@ -58,7 +58,7 @@
     }
 </script>
 
-<page>
+<page style="background-color: #1b1b30;">
     <actionBar on:tap={() => console.log(searched)} title="Korona news" style="background-color: #222; color: white;"/>
     <stackLayout class="main" >
         <stackLayout class="searchbar">

@@ -1,6 +1,7 @@
 <script>
     import { closeModal } from "svelte-native"
     import { onMount } from "svelte"
+    import MdThumbUp from 'svelte-icons/md/MdThumbUp.svelte'
     export let europa
 
 
@@ -25,7 +26,6 @@
 <page>
 <actionbar  title="{europa.Country}" class="actionbar"/>
     <scrollView>
-        <label text="hei" class="h1 center white"/>
         <flexboxLayout class="container" flexDirection="column">
                 <flexboxLayout class="box center" flexDirection="column" row="0" col="0">
                     <label class="h1 orange" text="{infected}" />
