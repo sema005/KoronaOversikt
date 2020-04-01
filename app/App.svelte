@@ -76,9 +76,9 @@
             <stackLayout class="div">
                 <flexboxLayout on:tap={() => showNew(item)} flexDirection="column" class="table">
                     <label class="white h1 " text="{item.Country}" />
-                    <label style="text-align:center;" class="white p" text="Total infected: {item.TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}" />
-                    <label style="text-align:center;" class="white p" text="Total deaths: {item.TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}" />
-                    <label style="text-align:center;" class="white p" text="Total recovered: {item.TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}" />
+                    <label style="text-align:center;" class="white p" text="Total infected: {item.TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
+                    <label style="text-align:center;" class="white p" text="Total deaths: {item.TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
+                    <label style="text-align:center;" class="white p" text="Total recovered: {item.TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
                     <label style="text-align:center;" class="white p" text="Click for more information" />
                 </flexboxLayout>
             </stackLayout>
