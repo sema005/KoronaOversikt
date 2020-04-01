@@ -9,6 +9,7 @@
     let death
     // ID til alle landene fra API som er i Europa
     let EuropaID = [1, 3, 23, 27, 30, 92, 102, 106, 107, 122, 22, 135, 130, 137, 247, 87, 146, 149, 150, 151, 155, 159, 160, 162, 166, 175, 174, 183, 184, 186, 187, 191, 194, 197, 198, 201, "storbritania", 206, 205, 91, 213, 120, 215, 129, "vatikanstaten", 16 ]
+    /*
     onMount( () => {
         fetch(`https://coronavirus-tracker-api.herokuapp.com/v2/locations`)
         .then( response => response.json() )
@@ -20,17 +21,30 @@
         }
         ).catch((err) => console.log(err))
     } )
-    // Serach teksten
+    */
+    onMount( () => {
+        fetch(`https://api.covid19api.com/summary`)
+        .then( response => response.json() )
+        .then( json => {
+            // Europa
+            europa = json.Countries
+            searched = europa
+            console.log(europa)
+        }
+        ).catch((err) => console.log(err))
+    } )
+    // Search teksten
     let search = ""
     // Nytt array med filter funskjon
     let searched = []
     const filterResult = () => {
-        searched = europa.filter( europa => europa.country.toLowerCase().includes(search.toLowerCase()))
+        searched = europa.filter( europa => europa.Country.toLowerCase().includes(search.toLowerCase()))
     }
     let order = "title"
     $:  switch(order){      
-            case 'title': searched = searched.sort( (a,b) => a.country > b.country ? 1 : -1);break
-            case 'death': searched = searched.sort( (a,b) => a.latest.deaths < b.latest.deaths ? 1 : -1); break
+            case 'title': searched = searched.sort( (a,b) => a.Country > b.Country ? 1 : -1);break
+            case 'death': searched = searched.sort( (a,b) => a.TotalDeaths < b.TotalDeaths ? 1 : -1); break
+            case 'infected': searched = searched.sort( (a,b) => a.TotalConfirmed < b.TotalConfirmed ? 1 : -1); break
     }
     const showNew = async (europa) => {
         await showModal(
@@ -45,26 +59,30 @@
 </script>
 
 <page>
-    <actionBar on:tap={() => console.log("hei")} title="Korona news Europa" style="background-color: #222; color: white;"/>
+    <actionBar on:tap={() => console.log(searched)} title="Korona news" style="background-color: #222; color: white;"/>
     <stackLayout class="main" >
         <stackLayout class="searchbar">
             <searchBar class="search" bind:text={search} on:textChange={filterResult} hint="Search after country"/>
-            <gridLayout columns="115, 115" rows="50, 50">
-                <button row="0" col="0" style="background-color:indigo; color:white" text="Title" on:tap={() => order = "title"} />
-                <button row="0" col="1" style="background-color:indigo; color:white" text="Death" on:tap={() => order = "death"} />
-            </gridLayout>
+            <flexboxLayout class="grid">
+                <button class="button" style="background-color:indigo; color:white" text="Title" on:tap={() => order = "title"} />
+                <button class="button" style="background-color:indigo; color:white" text="Death" on:tap={() => order = "death"} />
+                <button class="button" style="background-color:indigo; color:white" text="Infected" on:tap={() => order = "infected"} />
+            </flexboxLayout>
         </stackLayout>
     <scrollView>
     <flexboxLayout flexDirection="column">
         {#each searched as item}
+        {#if item.Country}
             <stackLayout class="div">
                 <flexboxLayout on:tap={() => showNew(item)} flexDirection="column" class="table">
-                    <label class="white h1 " text="{item.country}" />
-                    <label style="text-align:center;" class="white p" text="Latest infected: {item.latest.confirmed}" />
-                    <label style="text-align:center;" class="white p" text="Latest deaths: {item.latest.deaths}" />
+                    <label class="white h1 " text="{item.Country}" />
+                    <label style="text-align:center;" class="white p" text="Total infected: {item.TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}" />
+                    <label style="text-align:center;" class="white p" text="Total deaths: {item.TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}" />
+                    <label style="text-align:center;" class="white p" text="Total recovered: {item.TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}" />
                     <label style="text-align:center;" class="white p" text="Click for more information" />
                 </flexboxLayout>
             </stackLayout>
+        {/if}
         {:else}
             <activityIndicator busy="{true}" />
         {/each}
@@ -75,6 +93,12 @@
 </page>
 
 <style>
+    .grid {
+        justify-content: center;
+    }
+    .button {
+        width: 100
+    }
     .h1 {
         font-size: 25;
     }
