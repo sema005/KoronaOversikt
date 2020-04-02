@@ -14,7 +14,6 @@
             // World
             world = json.Countries
             searched = world
-            console.log(searched)
         }
         ).catch((err) => console.log(err))
     } )
@@ -28,6 +27,7 @@
         searched = world.filter( world => world.Country.toLowerCase().includes(search.toLowerCase()))
     }
 
+    // Filtrer etter hva du trykker på
     let order = "title"
     $:  switch(order){      
             case 'title': searched = searched.sort( (a,b) => a.Country > b.Country ? 1 : -1);break
@@ -35,6 +35,8 @@
             case 'infected': searched = searched.sort( (a,b) => a.TotalConfirmed < b.TotalConfirmed ? 1 : -1); break
             case 'recovered': searched = searched.sort( (a,b) => a.TotalRecovered < b.TotalRecovered ? 1 : -1); break
     }
+
+    // Åpner en ny modal som viser mer informasjon
     const showNew = async (world) => {
         await showModal(
             {
@@ -46,18 +48,6 @@
             }
         )
     }
-    const showNewOverall = async (world) => {
-        await showModal(
-            {
-                page: MoreInfo,
-                fullscreen: true,
-                props:{
-                    world:world
-                }
-            }
-        )
-    }
-
 </script>
 
 <page style="background-color: #1b1b30;">

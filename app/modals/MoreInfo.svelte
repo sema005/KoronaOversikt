@@ -7,17 +7,23 @@
     // Gjør så det er lettere å lese tallene
     let infected = world.TotalConfirmed
     infected = infected.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
     // Gjør så det er lettere å lese tallene
     let deaths = world.TotalDeaths
     deaths = deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    
+    // Gjør så det er lettere å lese tallene
     let recovered = world.TotalRecovered
     recovered = recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    
     // Gjør så det er lettere å lese tallene
     let latestDeaths = world.NewDeaths
     latestDeaths = latestDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
     // Gjør så det er lettere å lese tallene
     let latestConfirmed = world.NewConfirmed
     latestConfirmed = latestConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
     // Gjør så det er lettere å lese tallene
     let latestRecovered= world.NewRecovered
     latestRecovered = latestRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -34,6 +40,7 @@
     />
     <actionItem on:tap={ () => closeModal() }
         ios.systemIcon="14" ios.position="right"
+        text="Go back" android.position="popup"
     />
 </actionbar>
     <scrollView>
