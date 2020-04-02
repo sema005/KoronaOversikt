@@ -8,6 +8,7 @@
 
     let infected 
     let death
+
     //Henter data fra API
     onMount( () => {
         fetch(`https://api.covid19api.com/summary`)
@@ -20,40 +21,47 @@
         }
         ).catch((err) => console.log(err))
     } )
+
     // Search teksten
     let search = ""
+
     // Nytt array med filter funskjon
     let searched = []
     const filterResult = () => {
         searched = world.filter( world => world.Country.toLowerCase().includes(search.toLowerCase()))
     }
+
     let order = "title"
     $:  switch(order){      
             case 'title': searched = searched.sort( (a,b) => a.Country > b.Country ? 1 : -1);break
             case 'death': searched = searched.sort( (a,b) => a.TotalDeaths < b.TotalDeaths ? 1 : -1); break
             case 'infected': searched = searched.sort( (a,b) => a.TotalConfirmed < b.TotalConfirmed ? 1 : -1); break
+            case 'recovered': searched = searched.sort( (a,b) => a.TotalRecovered < b.TotalRecovered ? 1 : -1); break
     }
     const showNew = async (world) => {
         await showModal(
             {
                 page: MoreInfo,
+                fullscreen: true,
                 props:{
                     world:world
                 }
             }
         )
     }
+
 </script>
 
 <page style="background-color: #1b1b30;">
-    <actionBar on:tap={() => console.log(searched)} title="Korona news" style="background-color: #222; color: white;"/>
+    <actionBar title="Korona news" style="background-color: #222; color: white;"/>
     <stackLayout class="main" >
-        <stackLayout class="searchbar">
+        <stackLayout class="container_search_buttons">
             <searchBar class="search" bind:text={search} on:textChange={filterResult} hint="Search after country"/>
-            <flexboxLayout class="grid">
-                <button class="button" style="background-color:indigo; color:white" text="Title" on:tap={() => order = "title"} />
-                <button class="button" style="background-color:indigo; color:white" text="Death" on:tap={() => order = "death"} />
-                <button class="button" style="background-color:indigo; color:white" text="Infected" on:tap={() => order = "infected"} />
+            <flexboxLayout class="container_buttons">
+                <button class="button" text="Title" on:tap={() => order = "title"} />
+                <button class="button" text="Death" on:tap={() => order = "death"} />
+                <button class="button" text="Infected" on:tap={() => order = "infected"} />
+                <button class="button" text="Recovered" on:tap={() => order = "recovered"} />
             </flexboxLayout>
         </stackLayout>
     <scrollView>
@@ -63,9 +71,9 @@
             <stackLayout class="div">
                 <flexboxLayout on:tap={() => showNew(item)} flexDirection="column" class="table">
                     <label class="white h1 " text="{item.Country}" />
-                    <label style="text-align:center;" class="white p" text="Total infected: {item.TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
-                    <label style="text-align:center;" class="white p" text="Total deaths: {item.TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
-                    <label style="text-align:center;" class="white p" text="Total recovered: {item.TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
+                    <label style="text-align:center;" class="orange p" text="Total infected: {item.TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
+                    <label style="text-align:center;" class="red p" text="Total deaths: {item.TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
+                    <label style="text-align:center;" class="green p" text="Total recovered: {item.TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
                     <label style="text-align:center;" class="white p" text="Click for more information" />
                 </flexboxLayout>
             </stackLayout>
@@ -75,16 +83,23 @@
         {/each}
     </flexboxLayout>
     </scrollView>
-    
-
 </page>
 
 <style>
-    .grid {
+    .container_search {
+        width: 20%;
+        height: 20;
+    }
+
+    .container_buttons {
         justify-content: center;
+        width: 100%;
     }
     .button {
-        width: 100
+        width: 200;
+        background-color:indigo;
+        color: white;
+        font-size: 12;
     }
     .h1 {
         font-size: 25;
@@ -95,6 +110,15 @@
     .white {
         color: white;
     }
+    .red {
+        color: red;
+    }
+    .orange {
+        color: orange;
+    }
+    .green {
+        color: green;
+    }
     .div {
         background-color: #1b1b30;
         padding: 10;
@@ -103,8 +127,8 @@
         align-content: center;
     }
     .search {
-        background-color: #1b1b30;
         color: white;
+        background-color: #1b1b30;
     }
     .table {
         width: 70%;

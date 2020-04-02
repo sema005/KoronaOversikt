@@ -22,6 +22,7 @@
     let latestRecovered= world.NewRecovered
     latestRecovered = latestRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
+
 </script>
 
 <frame>
