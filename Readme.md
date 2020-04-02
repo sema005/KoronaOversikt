@@ -10,5 +10,5 @@ ths run [ios|android]
 
 ## Project structure
 
-Almost all are in App.js and then we have a modal in /modals. The modal is when u click on the box u get more information
+Almost all are in App.js and then we have a modal in /modals. The modal is when u click on the box u get more information about the country
 
