@@ -27,45 +27,57 @@
 
 <frame>
 <page>
-<actionbar  title="{world.Country}" class="actionbar"/>
+<actionbar class="actionbar">
+    <actionItem 
+         ios.position="left"
+        text="More information"
+    />
+    <actionItem on:tap={ () => closeModal() }
+        ios.systemIcon="14" ios.position="right"
+    />
+</actionbar>
     <scrollView>
         <flexboxLayout class="container" flexDirection="column">
-                <flexboxLayout class="box center" flexDirection="column" row="0" col="0">
+
+                <flexboxLayout class="heading" flexDirection="column">
+                    <label text="{world.Country}" class="h1" style="color:white;"/>
+                </flexboxLayout>
+                <flexboxLayout class="box center" flexDirection="column">
                     <stackLayout class="image_container">
                         <image src="~/image/virus4.png" class="image" />
                     </stackLayout>
                     <label class="h1 orange" text="{infected}" />
                     <label class="p orange" text="Total confirmed cases" />
                 </flexboxLayout>
-                <flexboxLayout class="box center" flexDirection="column" row="0" col="1">
+                <flexboxLayout class="box center" flexDirection="column">
                     <stackLayout class="image_container">
                         <image src="~/image/danger.png" class="image" />
                     </stackLayout>
                     <label class="h1 red" text="{deaths}" />
                     <label class="p red" text="Total deaths" />
                 </flexboxLayout>
-                <flexboxLayout class="box center" flexDirection="column" row="0" col="2">
+                <flexboxLayout class="box center" flexDirection="column">
                     <stackLayout class="image_container">
                         <image src="~/image/thumbsUp3.png" class="image" />
                     </stackLayout>
                     <label class="h1 green" text="{recovered}" />
-                    <label class="p green" text="Confirmed revoceries" />
+                    <label class="p green" text="Confirmed recoveries" />
                 </flexboxLayout>
-                <flexboxLayout class="box center" flexDirection="column" row="0" col="0">
+                <flexboxLayout class="box center" flexDirection="column">
                     <stackLayout class="image_container">
                         <image src="~/image/virus4.png" class="image" />
                     </stackLayout>
                     <label class="h1 orange" text="{latestConfirmed}" />
                     <label class="p orange" text="Latest confirmed" />
                 </flexboxLayout>
-                <flexboxLayout class="box center" flexDirection="column" row="0" col="1">
+                <flexboxLayout class="box center" flexDirection="column">
                     <stackLayout class="image_container">
                         <image src="~/image/danger.png" class="image" />
                     </stackLayout>
                     <label class="h1 red" text="{latestDeaths}" />
                     <label class="p red" text="Latest deaths" />
                 </flexboxLayout>
-                <flexboxLayout class="box center" flexDirection="column" row="0" col="2">
+                <flexboxLayout class="box center" flexDirection="column">
                     <stackLayout class="image_container">
                         <image src="~/image/thumbsUp3.png" class="image" />
                     </stackLayout>
@@ -100,6 +112,12 @@
     }
     .p {
         font-size: 20;
+    }
+    .heading {
+        height: 50;
+        justify-content: center;
+        text-align: center;
+        border-radius: 20;
     }
     .orange {
         color: orange;

@@ -6,18 +6,15 @@
     // Array med alle landene jeg har hentet fra API
     let world = []
 
-    let infected 
-    let death
-
     //Henter data fra API
     onMount( () => {
         fetch(`https://api.covid19api.com/summary`)
         .then( response => response.json() )
         .then( json => {
-            // Europa
+            // World
             world = json.Countries
             searched = world
-
+            console.log(searched)
         }
         ).catch((err) => console.log(err))
     } )
@@ -49,14 +46,26 @@
             }
         )
     }
+    const showNewOverall = async (world) => {
+        await showModal(
+            {
+                page: MoreInfo,
+                fullscreen: true,
+                props:{
+                    world:world
+                }
+            }
+        )
+    }
 
 </script>
 
 <page style="background-color: #1b1b30;">
-    <actionBar title="Korona news" style="background-color: #222; color: white;"/>
+    <actionBar title="Korona NEWS" style="background-color: #222; color: white;"/>
     <stackLayout class="main" >
         <stackLayout class="container_search_buttons">
-            <searchBar class="search" bind:text={search} on:textChange={filterResult} hint="Search after country"/>
+            <actionItem ios.systemIcon="" ios.position="right" text="Test"/>
+                <searchBar class="search" bind:text={search} on:textChange={filterResult} hint="Search after country"/>
             <flexboxLayout class="container_buttons">
                 <button class="button" text="Title" on:tap={() => order = "title"} />
                 <button class="button" text="Death" on:tap={() => order = "death"} />
@@ -86,11 +95,6 @@
 </page>
 
 <style>
-    .container_search {
-        width: 20%;
-        height: 20;
-    }
-
     .container_buttons {
         justify-content: center;
         width: 100%;

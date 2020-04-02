@@ -1,6 +1,6 @@
 # Korona app
 This is a simple app that uses this <a href="https://api.covid19api.com/summary">corona api.</a>
-It shows deaths and infected
+It shows deaths, infected and recoveries
 
 ## Set up
 ```html
