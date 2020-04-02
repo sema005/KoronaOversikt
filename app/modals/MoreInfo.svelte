@@ -1,32 +1,32 @@
 <script>
     import { closeModal } from "svelte-native"
     import { onMount } from "svelte"
-    export let europa
+    export let world
 
 
     // Gjør så det er lettere å lese tallene
-    let infected = europa.TotalConfirmed
+    let infected = world.TotalConfirmed
     infected = infected.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     // Gjør så det er lettere å lese tallene
-    let deaths = europa.TotalDeaths
+    let deaths = world.TotalDeaths
     deaths = deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    let recovered = europa.TotalRecovered
+    let recovered = world.TotalRecovered
     recovered = recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     // Gjør så det er lettere å lese tallene
-    let latestDeaths = europa.NewDeaths
+    let latestDeaths = world.NewDeaths
     latestDeaths = latestDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     // Gjør så det er lettere å lese tallene
-    let latestConfirmed = europa.NewConfirmed
+    let latestConfirmed = world.NewConfirmed
     latestConfirmed = latestConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     // Gjør så det er lettere å lese tallene
-    let latestRecovered= europa.NewRecovered
+    let latestRecovered= world.NewRecovered
     latestRecovered = latestRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
 </script>
 
 <frame>
 <page>
-<actionbar  title="{europa.Country}" class="actionbar"/>
+<actionbar  title="{world.Country}" class="actionbar"/>
     <scrollView>
         <flexboxLayout class="container" flexDirection="column">
                 <flexboxLayout class="box center" flexDirection="column" row="0" col="0">
