@@ -40,7 +40,6 @@
     />
     <actionItem on:tap={ () => closeModal() }
         ios.systemIcon="14" ios.position="right"
-        text="Go back" android.position="popup"
     />
 </actionbar>
     <scrollView>

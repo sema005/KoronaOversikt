@@ -51,7 +51,7 @@
 </script>
 
 <page style="background-color: #1b1b30;">
-    <actionBar title="Korona NEWS" style="background-color: #222; color: white;"/>
+    <actionBar title="Korona NEWS" style="background-color: #261c49;color: white;"/>
     <stackLayout class="main" >
         <stackLayout class="container_search_buttons">
             <actionItem ios.systemIcon="" ios.position="right" text="Test"/>
@@ -73,7 +73,7 @@
                     <label style="text-align:center;" class="orange p" text="Total infected: {item.TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
                     <label style="text-align:center;" class="red p" text="Total deaths: {item.TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
                     <label style="text-align:center;" class="green p" text="Total recovered: {item.TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}" />
-                    <label style="text-align:center;" class="white p" text="Click for more information" />
+                    <label style="text-align:center;" class="white p" text="Tap for more information" />
                 </flexboxLayout>
             </stackLayout>
         {/if}
