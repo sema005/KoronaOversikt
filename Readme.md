@@ -1,6 +1,6 @@
 # Korona app
-This is a simple app that uses this <a href="https://api.covid19api.com/summary">corona api.</a>
-It shows deaths, infected and recoveries
+Dette er en app som bruker et <a href="https://api.covid19api.com/summary">corona api.</a>
+Appen viser antall smittede, døde og friske
 
 ## Set up
 ```html
@@ -9,6 +9,5 @@ ths run [ios|android]
 ```
 
 ## Project structure
-
-Almost all are in App.js and then we have a modal in /modals. The modal is when u click on the box u get more information about the country
+Det er en modal i mappen /modals og resten er i App.svelte
 
